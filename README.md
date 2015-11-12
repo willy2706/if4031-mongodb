@@ -2,24 +2,27 @@ Eric (13512021)
 Willy (13512065)
 
 # Cara menjalankan program
-1. Clone repo https://github.com/willy2706/if4031-mongodb
+1.Clone repo https://github.com/willy2706/if4031-mongodb
+
 ```
 git clone https://github.com/willy2706/if4031-mongodb
 ```
 
-2. Masuk ke folder program
+2.Masuk ke folder program
+
 ```
 cd if4031-mongodb
 ```
 
-3. Build dependencies
+3.Build dependencies
+
 ```
 gradle build
 ```
 
-4. Buka project dengan Intellij IDEA
+4.Buka project dengan Intellij IDEA
 
-5. Run class src/main/java/if4031/client/ClientProgram.java
+5.Run class src/main/java/if4031/client/ClientProgram.java
 
 # Kumpulan perintah untuk program
 
