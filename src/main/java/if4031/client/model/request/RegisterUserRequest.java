@@ -1,15 +1,15 @@
 package if4031.client.model.request;
 
-import if4031.client.command.cassandra.RegisterUserCassandraCommand;
+import if4031.client.command.mongodb.RegisterUserMongoCommand;
 
 /**
  * Created by nim_13512065 on 11/8/15.
  */
-public class RegisterUserRequest implements CassandraModelRequest {
+public class RegisterUserRequest implements MongoModelRequest {
     private String username;
     private String password;
 
-    public RegisterUserRequest(RegisterUserCassandraCommand registerUserCassandraCommand) {
+    public RegisterUserRequest(RegisterUserMongoCommand registerUserCassandraCommand) {
         this.setUsername(registerUserCassandraCommand.getUsername());
         this.setPassword(registerUserCassandraCommand.getPassword());
     }

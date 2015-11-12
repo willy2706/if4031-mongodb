@@ -1,6 +1,6 @@
 package if4031.client.command;
 
-import if4031.client.command.cassandra.*;
+import if4031.client.command.mongodb.*;
 
 public class CommandParser {
 
@@ -36,12 +36,12 @@ public class CommandParser {
     public class ParseResultCassandra {
         private final ParseStatus status;
         private final String reason;
-        private final CassandraCommand cassandraCommand;
+        private final MongoCommand mongoCommand;
 
-        public ParseResultCassandra(ParseStatus _status, String _reason, CassandraCommand _command) {
+        public ParseResultCassandra(ParseStatus _status, String _reason, MongoCommand _command) {
             status = _status;
             reason = _reason;
-            cassandraCommand = _command;
+            mongoCommand = _command;
         }
 
         public ParseStatus getStatus() {
@@ -52,8 +52,8 @@ public class CommandParser {
             return reason;
         }
 
-        public CassandraCommand getCassandraCommand() {
-            return cassandraCommand;
+        public MongoCommand getMongoCommand() {
+            return mongoCommand;
         }
     }
 
@@ -173,20 +173,20 @@ public class CommandParser {
         if (command.equals("register")) {
             String username = tokens[1];
             String password = tokens[2];
-            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new RegisterUserCassandraCommand(username, password));
+            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new RegisterUserMongoCommand(username, password));
         } else if (command.equals("follow")) {
             String username = tokens[1];
             String follower = tokens[2];
-            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new FollowUserCassandraCommand(username, follower));
+            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new FollowUserMongoCommand(username, follower));
         } else if (command.equals("tweet")) {
             String username = tokens[1];
             int firstSpaceIdx = line.indexOf(" ");
             String body = line.substring(firstSpaceIdx + username.length() + 1 /*spasi*/ + 1);
-            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new AddTweetCassandraCommand(username, body));
+            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new AddTweetMongoCommand(username, body));
         } else if (command.equals("displaytweet")) {
-            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new DisplayTweetCassandraCommand());
+            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new DisplayTweetMongoCommand());
         } else if (command.equals("displaytimeline")) {
-            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new DisplayTimelineCassandraCommand());
+            return new ParseResultCassandra(ParseStatus.OK, OK_TEXT, new DisplayTimelineMongoCommand());
         } else if (command.equals("exit")) {
             return new ParseResultCassandra(ParseStatus.EXIT, "", null);
         } else {

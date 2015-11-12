@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by nim_13512065 on 11/9/15.
  */
-public class DisplayTimelineResponse implements CassandraModelResponse {
+public class DisplayTimelineResponse implements MongoModelResponse {
     private Map<User, Timeline> tweets;
 
     public DisplayTimelineResponse() {

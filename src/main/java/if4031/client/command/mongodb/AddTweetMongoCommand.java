@@ -1,15 +1,13 @@
-package if4031.client.command.cassandra;
-
-import if4031.client.command.Command;
+package if4031.client.command.mongodb;
 
 /**
  * Created by nim_13512065 on 11/8/15.
  */
-public class AddTweetCassandraCommand implements CassandraCommand {
+public class AddTweetMongoCommand implements MongoCommand {
     private String username;
     private String body;
 
-    public AddTweetCassandraCommand(String username, String body) {
+    public AddTweetMongoCommand(String username, String body) {
         this.setUsername(username);
         this.setBody(body);
     }

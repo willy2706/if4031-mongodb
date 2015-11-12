@@ -1,20 +1,20 @@
 package if4031.client.model.request;
 
-import if4031.client.command.cassandra.AddTweetCassandraCommand;
+import if4031.client.command.mongodb.AddTweetMongoCommand;
 
 import java.util.UUID;
 
 /**
  * Created by nim_13512065 on 11/8/15.
  */
-public class AddTweetRequest implements CassandraModelRequest {
+public class AddTweetRequest implements MongoModelRequest {
     private final String username;
     private final String body;
     private final UUID tweet_id;
     private final UUID time;
-    public AddTweetRequest(AddTweetCassandraCommand addTweetCassandraCommand) {
-        username = addTweetCassandraCommand.getUsername();
-        body = addTweetCassandraCommand.getBody();
+    public AddTweetRequest(AddTweetMongoCommand addTweetMongoCommand) {
+        username = addTweetMongoCommand.getUsername();
+        body = addTweetMongoCommand.getBody();
         tweet_id = UUID.randomUUID();
         time = UUID.randomUUID(); //TODO change
     }

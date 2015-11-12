@@ -2,7 +2,7 @@ package if4031.client;
 
 import if4031.client.accessor.MongoAccessor;
 import if4031.client.command.*;
-import if4031.client.command.cassandra.*;
+import if4031.client.command.mongodb.*;
 import if4031.client.model.Timeline;
 import if4031.client.model.Tweet;
 import if4031.client.model.User;
@@ -59,7 +59,7 @@ public class CLInterface {
             CommandParser.ParseResultCassandra parseResultCassandra = commandParser.parseCassandraCommand(commandString);
             CommandParser.ParseStatus status = parseResultCassandra.getStatus();
             if (status == CommandParser.ParseStatus.OK) {
-                CassandraCommand cmd = parseResultCassandra.getCassandraCommand();
+                MongoCommand cmd = parseResultCassandra.getMongoCommand();
                 processCassandra(cmd);
 
             } else if (status == CommandParser.ParseStatus.EXIT) {
@@ -70,20 +70,20 @@ public class CLInterface {
         }
     }
 
-    void processCassandra(CassandraCommand cassandraCommand) {
-        if (cassandraCommand instanceof RegisterUserCassandraCommand) {
-            RegisterUserCassandraCommand registerUserCassandraCommand = (RegisterUserCassandraCommand) cassandraCommand;
+    void processCassandra(MongoCommand mongoCommand) {
+        if (mongoCommand instanceof RegisterUserMongoCommand) {
+            RegisterUserMongoCommand registerUserCassandraCommand = (RegisterUserMongoCommand) mongoCommand;
             RegisterUserRequest registerUserRequest = new RegisterUserRequest(registerUserCassandraCommand);
             mongoAccessor.registerUser(registerUserRequest);
-        } else if (cassandraCommand instanceof FollowUserCassandraCommand) {
-            FollowUserCassandraCommand followUserCassandraCommand = (FollowUserCassandraCommand) cassandraCommand;
+        } else if (mongoCommand instanceof FollowUserMongoCommand) {
+            FollowUserMongoCommand followUserCassandraCommand = (FollowUserMongoCommand) mongoCommand;
             FollowUserRequest followUserRequest = new FollowUserRequest(followUserCassandraCommand);
             mongoAccessor.followUser(followUserRequest);
-        } else if (cassandraCommand instanceof AddTweetCassandraCommand) {
-            AddTweetCassandraCommand addTweetCassandraCommand = (AddTweetCassandraCommand) cassandraCommand;
-            AddTweetRequest addTweetRequest = new AddTweetRequest(addTweetCassandraCommand);
+        } else if (mongoCommand instanceof AddTweetMongoCommand) {
+            AddTweetMongoCommand addTweetMongoCommand = (AddTweetMongoCommand) mongoCommand;
+            AddTweetRequest addTweetRequest = new AddTweetRequest(addTweetMongoCommand);
             mongoAccessor.tweet(addTweetRequest);
-        } else if (cassandraCommand instanceof DisplayTweetCassandraCommand) {
+        } else if (mongoCommand instanceof DisplayTweetMongoCommand) {
             DisplayTweetResponse displayTweetResponse = mongoAccessor.displayTweet(new DisplayTweetRequest());
             Map<User, List<Tweet>> userListMap = displayTweetResponse.getTweetResponse();
             for (Map.Entry<User, List<Tweet>> entry : userListMap.entrySet()) {
@@ -93,7 +93,7 @@ public class CLInterface {
                     out.println(i+". " + tweetList.get(i-1).getBody());
                 }
             }
-        } else if (cassandraCommand instanceof DisplayTimelineCassandraCommand) {
+        } else if (mongoCommand instanceof DisplayTimelineMongoCommand) {
             DisplayTimelineResponse displayTimelineResponse = mongoAccessor.displayTimeline(new DisplayTimelineRequest());
             Map<User, Timeline> userListMap = displayTimelineResponse.getTimelineResponse();
             for (Map.Entry<User, Timeline> entry : userListMap.entrySet()) {

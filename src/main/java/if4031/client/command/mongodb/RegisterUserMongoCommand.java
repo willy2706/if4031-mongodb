@@ -1,15 +1,13 @@
-package if4031.client.command.cassandra;
-
-import if4031.client.command.Command;
+package if4031.client.command.mongodb;
 
 /**
  * Created by nim_13512065 on 11/8/15.
  */
-public class RegisterUserCassandraCommand implements CassandraCommand {
+public class RegisterUserMongoCommand implements MongoCommand {
     private String username;
     private String password;
 
-    public RegisterUserCassandraCommand(String username, String password) {
+    public RegisterUserMongoCommand(String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
     }

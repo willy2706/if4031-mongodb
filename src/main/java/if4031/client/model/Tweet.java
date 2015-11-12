@@ -7,11 +7,11 @@ import java.util.UUID;
  */
 public class Tweet {
     private final String username; //ini adalah orang yang tweet
-    private final UUID time;
+    private final Long time;
     private final UUID tweet_id;
     private final String body;
 
-    public Tweet(String username, UUID time, UUID tweet_id, String body) {
+    public Tweet(String username, Long time, UUID tweet_id, String body) {
         this.username = username;
         this.time = time;
         this.tweet_id = tweet_id;
@@ -26,7 +26,7 @@ public class Tweet {
         return tweet_id;
     }
 
-    public UUID getTime() {
+    public Long getTime() {
         return time;
     }
 
