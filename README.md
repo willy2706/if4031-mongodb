@@ -34,19 +34,38 @@ exit
 ```
 db.users.insert({username: "a", password: "ab"})
 ```
+
 2. Follow user dengan username "a" dan follower "b"
 ```
 db.followers.insert({username: "a", follower: "b"})
 ```
-3. Tweet
+
+3. Tweet dengan username "a" dan body "halo halo bandung"
+```
+ad
 ```
 
-```
 4. Tampilkan tweet per user
 ```
-
+db.users.find().forEach (function (user) {
+	print(user.username)
+	var i = 1;
+	db.tweets.find({username:user.username}).forEach(function (tweet) {
+		print(i + ". " + tweet.body)
+		++i
+	})
+})
 ```
+
 5. Tampilkan timeline per user
 ```
-
+db.users.find().forEach (function (user) {
+	print(user.username)
+	var i = 1;
+	db.timeline.find({username:user.username}).forEach(function (timeline) {
+		var mytweet = db.tweets.findOne({tweet_id:timeline.tweet_id})
+		print(i + ". [" + timeline.time +"] "+ mytweet.body)
+		++i
+	})
+})
 ```
