@@ -13,7 +13,7 @@ public class DisplayTimelineResponse implements MongoModelResponse {
     private Map<User, Timeline> tweets;
 
     public DisplayTimelineResponse() {
-        tweets = new HashMap<>();
+        tweets = new HashMap<User, Timeline>();
     }
 
     public void addUserAndTweets(User user, Timeline timeline) {
